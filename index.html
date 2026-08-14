@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header__greeting">
+      <p id="current-time" class="header__time"></p>
+      <p id="current-date" class="header__date"></p>
+      <h1 id="greeting-text" class="header__greeting-text"></h1>
+    </div>
+
+    <div class="header__controls">
+      <!-- Custom name button -->
+      <button id="btn-set-name" class="btn btn--ghost" aria-label="Set your name">
+        ✏️ Set Name
+      </button>
+      <!-- Dark / Light mode toggle -->
+      <button id="btn-theme" class="btn btn--ghost" aria-label="Toggle dark mode">
+        🌙 Dark Mode
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== MAIN GRID ===== -->
+  <main class="dashboard">
+
+    <!-- ── FOCUS TIMER ── -->
+    <section class="card" aria-label="Focus Timer">
+      <h2 class="card__title">🍅 Focus Timer</h2>
+
+      <div class="timer">
+        <div id="timer-display" class="timer__display">25:00</div>
+
+        <div class="timer__mode-switcher">
+          <button class="btn btn--mode active" data-minutes="25">Pomodoro</button>
+          <button class="btn btn--mode" data-minutes="5">Short Break</button>
+          <button class="btn btn--mode" data-minutes="15">Long Break</button>
+        </div>
+
+        <div class="timer__controls">
+          <button id="btn-start" class="btn btn--primary">▶ Start</button>
+          <button id="btn-stop"  class="btn btn--secondary">⏸ Stop</button>
+          <button id="btn-reset" class="btn btn--ghost">↺ Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TO-DO LIST ── -->
+    <section class="card" aria-label="To-Do List">
+      <h2 class="card__title">📝 To-Do List</h2>
+
+      <form id="todo-form" class="todo-form" novalidate>
+        <input
+          type="text"
+          id="todo-input"
+          class="input"
+          placeholder="Add a new task…"
+          maxlength="120"
+          autocomplete="off"
+          aria-label="New task"
+        />
+        <button type="submit" class="btn btn--primary">Add</button>
+      </form>
+
+      <p id="todo-error" class="error-msg" role="alert" aria-live="polite"></p>
+
+      <div class="todo-filters">
+        <button class="btn btn--filter active" data-filter="all">All</button>
+        <button class="btn btn--filter" data-filter="active">Active</button>
+        <button class="btn btn--filter" data-filter="completed">Done</button>
+      </div>
+
+      <ul id="todo-list" class="todo-list" aria-label="Task list"></ul>
+
+      <div class="todo-footer">
+        <span id="todo-count" class="todo-count"></span>
+        <button id="btn-clear-done" class="btn btn--ghost btn--sm">Clear Done</button>
+      </div>
+    </section>
+
+    <!-- ── QUICK LINKS ── -->
+    <section class="card" aria-label="Quick Links">
+      <h2 class="card__title">🔗 Quick Links</h2>
+
+      <form id="link-form" class="todo-form" novalidate>
+        <input
+          type="text"
+          id="link-label"
+          class="input"
+          placeholder="Label (e.g. YouTube)"
+          maxlength="30"
+          autocomplete="off"
+          aria-label="Link label"
+        />
+        <input
+          type="url"
+          id="link-url"
+          class="input"
+          placeholder="URL (https://…)"
+          autocomplete="off"
+          aria-label="Link URL"
+        />
+        <button type="submit" class="btn btn--primary">Save</button>
+      </form>
+
+      <p id="link-error" class="error-msg" role="alert" aria-live="polite"></p>
+
+      <div id="links-grid" class="links-grid"></div>
+    </section>
+
+  </main>
+
+  <!-- ===== NAME MODAL ===== -->
+  <div id="name-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal__box">
+      <h2 id="modal-title" class="modal__title">What's your name?</h2>
+      <input
+        type="text"
+        id="name-input"
+        class="input"
+        placeholder="Enter your name…"
+        maxlength="40"
+        aria-label="Your name"
+      />
+      <div class="modal__actions">
+        <button id="btn-save-name" class="btn btn--primary">Save</button>
+        <button id="btn-cancel-name" class="btn btn--ghost">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
